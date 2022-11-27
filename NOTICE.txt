@@ -1,0 +1,7 @@
+This product includes software developed by The Apache Software
+Foundation (http://www.apache.org/).
+
+lib/pinyin.txt is a part of nlp-lang project which are licensed under Apache-2.0 license.
+Copyright 2011-2017 nlp-lang (https://github.com/NLPchina/nlp-lang)
+
+Other part of this repo are licensed under GPL-3.0 license.
