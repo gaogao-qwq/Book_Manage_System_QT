@@ -369,13 +369,13 @@ void editBook::on_insertButton_clicked() {
 }
 
 void editBook::on_backButton_clicked() {
-    auto w_mainMenu = new Main_Menu(nullptr, bookList);
+    auto w_mainMenu = new mainMenu(nullptr, bookList);
     w_mainMenu->show();
     this->close();
 }
 
 void editBook::on_backSaveButton_clicked() {
-    auto w_mainMenu = new Main_Menu(nullptr, newList);
+    auto w_mainMenu = new mainMenu(nullptr, newList);
     w_mainMenu->show();
     this->close();
 }

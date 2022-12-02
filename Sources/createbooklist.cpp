@@ -8,7 +8,7 @@ createBookList::createBookList(QWidget *parent, BookList *list) :
 }
 
 void createBookList::on_backButton_clicked() {
-    auto w_mainMenu = new Main_Menu(nullptr, bookList);
+    auto w_mainMenu = new mainMenu(nullptr, bookList);
     w_mainMenu->show();
     this->close();
 }
@@ -24,7 +24,7 @@ void createBookList::on_backSaveButton_clicked() {
                 QMessageBox::StandardButtons(QMessageBox::StandardButton::Yes | QMessageBox::StandardButton::No)
         )) return;
     }
-    auto w_mainMenu = new Main_Menu(nullptr, newList);
+    auto w_mainMenu = new mainMenu(nullptr, newList);
     w_mainMenu->show();
     this->close();
 }

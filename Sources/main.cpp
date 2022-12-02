@@ -1,5 +1,5 @@
 #include <QApplication>
-#include "main_menu.hpp"
+#include "mainmenu.hpp"
 #include "bookList.hpp"
 
 int main(int argc, char *argv[]) {
@@ -14,8 +14,7 @@ int main(int argc, char *argv[]) {
     b1->next = b2, b2->prev = b1, b2->next = b3, b3->prev = b2, b3->next = b4,
     b4->prev = b3, b4->next = b5, b5->prev = b4, b5->next = b6, b6->prev = b5,
     b6->next = b7, b7->prev = b6;
-    auto w_mainMenu = new Main_Menu(
-        nullptr, new BookList(b1, 7));
+    auto w_mainMenu = new mainMenu(nullptr, new BookList(b1, 7));
     w_mainMenu->show();
     return QApplication::exec();
 }

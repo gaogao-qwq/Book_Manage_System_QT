@@ -24,10 +24,9 @@ add_executable(Book_Manage_System_QT
         Sources/main.cpp
         Sources/bookList.cpp
         Sources/convert.cpp
-        Sources/main_menu.cpp Sources/Headers/main_menu.hpp Sources/Forms/main_menu.ui
         Sources/browsebook.cpp Sources/Headers/browsebook.hpp Sources/Forms/browsebook.ui
         Sources/editbook.cpp Sources/Headers/editbook.hpp Sources/Forms/editbook.ui
-        Sources/createbooklist.cpp Sources/Headers/createbooklist.hpp Sources/Forms/createbooklist.ui Sources/editlistsubwindow.cpp Sources/Headers/editlistsubwindow.hpp Sources/Forms/editlistsubwindow.ui Sources/insertlistsubwindow.cpp Sources/Headers/insertlistsubwindow.hpp Sources/Forms/insertlistsubwindow.ui)
+        Sources/createbooklist.cpp Sources/Headers/createbooklist.hpp Sources/Forms/createbooklist.ui Sources/editlistsubwindow.cpp Sources/Headers/editlistsubwindow.hpp Sources/Forms/editlistsubwindow.ui Sources/insertlistsubwindow.cpp Sources/Headers/insertlistsubwindow.hpp Sources/Forms/insertlistsubwindow.ui Sources/mainmenu.cpp Sources/Headers/mainmenu.hpp Sources/Forms/mainmenu.ui)
 
 target_link_libraries(Book_Manage_System_QT
         Qt::Core

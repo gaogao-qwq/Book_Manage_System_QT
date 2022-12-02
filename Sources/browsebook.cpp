@@ -26,7 +26,7 @@ void browseBook::updateTableWidget(BookList *l) {
 }
 
 void browseBook::on_backButton_clicked() {
-    auto w_mainMenu = new Main_Menu(nullptr, bookList);
+    auto w_mainMenu = new mainMenu(nullptr, bookList);
     w_mainMenu->show();
     this->close();
 }

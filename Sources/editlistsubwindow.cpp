@@ -15,7 +15,6 @@ editListSubWindow::editListSubWindow(QWidget *parent, BookList *list, int row) :
     ui->pressTextEdit->setPlainText(QString::fromStdString(p->press));
 }
 
-
 void editListSubWindow::on_cancelButton_clicked() {
     auto w_editBook = new editBook(nullptr, bookList);
     w_editBook->show();
