@@ -5,6 +5,8 @@
 browseBook::browseBook(QWidget *parent, BookList *list) :
         QWidget(parent), ui(new Ui::browseBook), bookList(list) {
     ui->setupUi(this);
+    // 不允许编辑
+    ui->bookTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     browseBook::updateTableWidget(bookList);
 }
 

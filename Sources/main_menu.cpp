@@ -21,6 +21,16 @@ void Main_Menu::on_browsBookButton_clicked() {
 }
 
 void Main_Menu::on_editBookButton_clicked() {
+    if (bookList->size == 0) {
+        QMessageBox::warning(
+            this,
+            "喜报",
+            "图书表为空或不存在",
+            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
+            QMessageBox::StandardButton::Ok
+        );
+        return;
+    }
     auto w_editBook = new editBook(nullptr, bookList);
     w_editBook->show();
     this->close();

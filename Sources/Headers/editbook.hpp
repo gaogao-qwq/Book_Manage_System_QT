@@ -4,6 +4,9 @@
 #include <QWidget>
 #include "main_menu.hpp"
 #include "bookList.hpp"
+#include "convert.hpp"
+#include "editlistsubwindow.hpp"
+#include "insertlistsubwindow.hpp"
 
 
 QT_BEGIN_NAMESPACE
@@ -25,19 +28,36 @@ private:
     BookList *deepCopy(BookList *l);
     // 更新 tableWidget 组件函数
     void updateTableWidget(BookList *l);
-    // Debug 用
+    // Debug 用打印函数
     static void debugPrintList(BookList *l);
+    // 排序
+    BookNode *sortByPrice(BookNode *h);
+    BookNode *sortByISBN(BookNode *h);
+    BookNode *sortByBook(BookNode *h);
+    BookNode *sortByAuthor(BookNode *h);
+    BookNode *sortByPress(BookNode *h);
+    // 删除
+    void deleteList(BookList *l, int row);
 
 // 槽函数
 private slots:
     void on_sortByPriceButton_clicked();
+    void on_sortByISBNButton_clicked();
+    void on_sortByBookButton_clicked();
+    void on_sortByAuthorButton_clicked();
+    void on_sortByPressButton_clicked();
     void on_backButton_clicked();
     void on_backSaveButton_clicked();
+    void on_editButton_clicked();
+    void on_deleteButton_clicked();
+    void on_insertButton_clicked();
 
+// 私有成员变量
 private:
     Ui::editBook *ui;
     BookList *bookList;
     BookList *newList;
+    std::map<std::string, std::string> m_pinyin;
 };
 
 

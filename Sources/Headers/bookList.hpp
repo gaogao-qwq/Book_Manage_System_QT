@@ -32,11 +32,6 @@ public:
     BookNode *head;
     int size;
 
-// 公有成员函数
-public:
-    // 归并排序函数
-    BookNode *sortByPrice(BookNode *h);
-
 public:
     // 构造函数
     explicit BookList(BookNode *h = nullptr, int s = 0);

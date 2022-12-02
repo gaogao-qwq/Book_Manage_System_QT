@@ -1,12 +1,27 @@
 #include "editbook.hpp"
 #include "Forms/ui_editBook.h"
 
-
 editBook::editBook(QWidget *parent, BookList *list) :
         QWidget(parent), ui(new Ui::editBook), bookList(list), newList(nullptr) {
     ui->setupUi(this);
+
+    // 只允许选中一行
+    ui->bookTable->setSelectionBehavior(QAbstractItemView::SelectRows);
+    ui->bookTable->setSelectionMode(QAbstractItemView::SingleSelection);
+    //不允许编辑
+    ui->bookTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
     newList = deepCopy(bookList);
     editBook::updateTableWidget(newList);
+    if (Convert::getPinYinMap(m_pinyin) == -1) {
+        QMessageBox::warning(
+            this,
+            "喜报",
+            "找不到或不存在拼音字库文件 pinyin.txt",
+            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
+            QMessageBox::StandardButton::Ok
+        );
+    }
 }
 
 
@@ -52,9 +67,305 @@ void editBook::debugPrintList(BookList *l) {
         qDebug() << QString::number(p->price) << " ";
 }
 
+BookNode *editBook::sortByPrice(BookNode *h) {
+    // 分割递归终止条件
+    if(h == nullptr || h->next == nullptr) return h;
+    // 定义并初始化快慢指针
+    auto fast = h->next, slow = h;
+    while(fast != nullptr && fast->next != nullptr) {
+        // 慢指针一次移动一个结点
+        slow = slow->next;
+        // 快指针一次移动两个结点
+        fast = fast->next->next;
+    }
+    // 循环结束后慢指针指向链表中间结点。
+    // 用 tmp 缓存中间结点，然后从中间分割链表。
+    auto tmp = slow->next;
+    slow->next = nullptr, tmp->prev = nullptr;
+    auto left = sortByPrice(h);
+    auto right = sortByPrice(tmp);
+
+    // 合并递归
+    auto _h = new BookNode();
+    auto res = _h;
+    // 因为是双链表，所以要把结点缓存下来方便前向指针的更新
+    BookNode *prevTmp = nullptr;
+    while(left != nullptr && right != nullptr) {
+        if(left->price < right->price) {
+            _h->next = left;
+            prevTmp = left;
+            left = left->next;
+        } else {
+            _h->next = right;
+            prevTmp = right;
+            right = right->next;
+        }
+        _h = _h->next;
+    }
+    _h->next = (left != nullptr) ? left : right, _h->next->prev = prevTmp;
+    return res->next;
+}
+
+BookNode *editBook::sortByISBN(BookNode *h) {
+    // 分割递归终止条件
+    if (h == nullptr || h->next == nullptr) return h;
+    // 定义并初始化快慢指针
+    auto fast = h->next, slow = h;
+    while (fast != nullptr && fast->next != nullptr) {
+        // 慢指针一次移动一个结点
+        slow = slow->next;
+        // 快指针一次移动两个结点
+        fast = fast->next->next;
+    }
+    // 循环结束后慢指针指向链表中间结点。
+    // 用 tmp 缓存中间结点，然后从中间分割链表。
+    auto tmp = slow->next;
+    slow->next = nullptr, tmp->prev = nullptr;
+    auto left = sortByISBN(h);
+    auto right = sortByISBN(tmp);
+
+    // 合并递归
+    auto _h = new BookNode();
+    auto res = _h;
+    // 因为是双链表，所以要把结点缓存下来方便前向指针的更新
+    BookNode *prevTmp = nullptr;
+    while (left != nullptr && right != nullptr) {
+        if (left->ISBN < right->ISBN) {
+            _h->next = left;
+            prevTmp = left;
+            left = left->next;
+        } else {
+            _h->next = right;
+            prevTmp = right;
+            right = right->next;
+        }
+        _h = _h->next;
+    }
+    _h->next = (left != nullptr) ? left : right, _h->next->prev = prevTmp;
+    return res->next;
+}
+
+BookNode *editBook::sortByBook(BookNode *h) {
+    // 分割递归终止条件
+    if (h == nullptr || h->next == nullptr) return h;
+    // 定义并初始化快慢指针
+    auto fast = h->next, slow = h;
+    while (fast != nullptr && fast->next != nullptr) {
+        // 慢指针一次移动一个结点
+        slow = slow->next;
+        // 快指针一次移动两个结点
+        fast = fast->next->next;
+    }
+    // 循环结束后慢指针指向链表中间结点。
+    // 用 tmp 缓存中间结点，然后从中间分割链表。
+    auto tmp = slow->next;
+    slow->next = nullptr, tmp->prev = nullptr;
+    auto left = sortByBook(h);
+    auto right = sortByBook(tmp);
+
+    // 合并递归
+    auto _h = new BookNode();
+    auto res = _h;
+    // 因为是双链表，所以要把结点缓存下来方便前向指针的更新
+    BookNode *prevTmp = nullptr;
+    while (left != nullptr && right != nullptr) {
+        if (Convert::convertZhToPinyin(left->book, m_pinyin) < Convert::convertZhToPinyin(right->book, m_pinyin)) {
+            _h->next = left;
+            prevTmp = left;
+            left = left->next;
+        } else {
+            _h->next = right;
+            prevTmp = right;
+            right = right->next;
+        }
+        _h = _h->next;
+    }
+    _h->next = (left != nullptr) ? left : right, _h->next->prev = prevTmp;
+    return res->next;
+}
+
+BookNode *editBook::sortByAuthor(BookNode *h) {
+    // 分割递归终止条件
+    if (h == nullptr || h->next == nullptr) return h;
+    // 定义并初始化快慢指针
+    auto fast = h->next, slow = h;
+    while (fast != nullptr && fast->next != nullptr) {
+        // 慢指针一次移动一个结点
+        slow = slow->next;
+        // 快指针一次移动两个结点
+        fast = fast->next->next;
+    }
+    // 循环结束后慢指针指向链表中间结点。
+    // 用 tmp 缓存中间结点，然后从中间分割链表。
+    auto tmp = slow->next;
+    slow->next = nullptr, tmp->prev = nullptr;
+    auto left = sortByAuthor(h);
+    auto right = sortByAuthor(tmp);
+
+    // 合并递归
+    auto _h = new BookNode();
+    auto res = _h;
+    // 因为是双链表，所以要把结点缓存下来方便前向指针的更新
+    BookNode *prevTmp = nullptr;
+    while (left != nullptr && right != nullptr) {
+        if (Convert::convertZhToPinyin(left->author, m_pinyin) < Convert::convertZhToPinyin(right->author, m_pinyin)) {
+            _h->next = left;
+            prevTmp = left;
+            left = left->next;
+        } else {
+            _h->next = right;
+            prevTmp = right;
+            right = right->next;
+        }
+        _h = _h->next;
+    }
+    _h->next = (left != nullptr) ? left : right, _h->next->prev = prevTmp;
+    return res->next;
+}
+
+BookNode *editBook::sortByPress(BookNode *h) {
+    // 分割递归终止条件
+    if (h == nullptr || h->next == nullptr) return h;
+    // 定义并初始化快慢指针
+    auto fast = h->next, slow = h;
+    while (fast != nullptr && fast->next != nullptr) {
+        // 慢指针一次移动一个结点
+        slow = slow->next;
+        // 快指针一次移动两个结点
+        fast = fast->next->next;
+    }
+    // 循环结束后慢指针指向链表中间结点。
+    // 用 tmp 缓存中间结点，然后从中间分割链表。
+    auto tmp = slow->next;
+    slow->next = nullptr, tmp->prev = nullptr;
+    auto left = sortByPress(h);
+    auto right = sortByPress(tmp);
+
+    // 合并递归
+    auto _h = new BookNode();
+    auto res = _h;
+    // 因为是双链表，所以要把结点缓存下来方便前向指针的更新
+    BookNode *prevTmp = nullptr;
+    while (left != nullptr && right != nullptr) {
+        if (Convert::convertZhToPinyin(left->press, m_pinyin) < Convert::convertZhToPinyin(right->press, m_pinyin)) {
+            _h->next = left;
+            prevTmp = left;
+            left = left->next;
+        } else {
+            _h->next = right;
+            prevTmp = right;
+            right = right->next;
+        }
+        _h = _h->next;
+    }
+    _h->next = (left != nullptr) ? left : right, _h->next->prev = prevTmp;
+    return res->next;
+}
+
+void editBook::deleteList(BookList *l, int row) {
+    auto p = l->head;
+    if (row > l->size) {
+        if (QMessageBox::Ok ==  QMessageBox::warning(
+                this,
+                "喜报",
+                "所选择要编辑的图书行数超出了链表长度，请重新输入！",
+                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
+                QMessageBox::StandardButton::Ok
+        )) return;
+    }
+    for (int i = 0; i < row; ++i) p = p->next;
+    // 对于删除头结点
+    if (p->prev == nullptr) {
+        l->head = l->head->next;
+        // 当头结点不为最后一个结点时
+        if (l->head != nullptr) l->head->prev = nullptr;
+        --newList->size;
+        delete(p);
+        return;
+    }
+    // 对于删除尾结点
+    if (p->next == nullptr) {
+        p->prev->next = nullptr;
+        --newList->size;
+        delete(p);
+        return;
+    }
+    p->prev->next = p->next;
+    p->next->prev = p->prev;
+    --newList->size;
+    delete(p);
+}
+
 void editBook::on_sortByPriceButton_clicked() {
-    newList->head = newList->sortByPrice(newList->head);
+    newList->head = editBook::sortByPrice(newList->head);
     editBook::updateTableWidget(newList);
+}
+
+void editBook::on_sortByISBNButton_clicked() {
+    newList->head = editBook::sortByISBN(newList->head);
+    editBook::updateTableWidget(newList);
+}
+
+void editBook::on_sortByBookButton_clicked() {
+    newList->head = editBook::sortByBook(newList->head);
+    editBook::updateTableWidget(newList);
+}
+
+void editBook::on_sortByAuthorButton_clicked() {
+    newList->head = editBook::sortByAuthor(newList->head);
+    editBook::updateTableWidget(newList);
+}
+
+void editBook::on_sortByPressButton_clicked() {
+    newList->head = editBook::sortByPress(newList->head);
+    editBook::updateTableWidget(newList);
+}
+
+void editBook::on_editButton_clicked() {
+    auto items = ui->bookTable->selectedItems();
+    if (items.empty()) {
+        QMessageBox::warning(
+            this,
+            "喜报",
+            "请先在右侧列表中选择你要编辑的图书行",
+            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok)
+        );
+        return;
+    }
+    auto w_editListSubWindow = new editListSubWindow(nullptr, newList, (int)items.at(0)->row());
+    w_editListSubWindow->show();
+    this->close();
+}
+
+void editBook::on_deleteButton_clicked() {
+    auto items = ui->bookTable->selectedItems();
+    if (items.empty()) {
+        QMessageBox::warning(
+                this,
+                "喜报",
+                "请先在右侧列表中选择你要编辑的图书行",
+                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok)
+        );
+        return;
+    }
+    editBook::deleteList(newList, (int)items.at(0)->row());
+    editBook::updateTableWidget(newList);
+}
+
+void editBook::on_insertButton_clicked() {
+    auto items = ui->bookTable->selectedItems();
+    if (items.empty()) {
+        QMessageBox::warning(
+                this,
+                "喜报",
+                "请先在右侧列表中选择你要插入的图书行",
+                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok)
+        );
+        return;
+    }
+    auto w_insertListSubWindow = new insertListSubWindow(nullptr, newList, items.at(0)->row());
+    w_insertListSubWindow->show();
+    this->close();
 }
 
 void editBook::on_backButton_clicked() {
@@ -69,9 +380,8 @@ void editBook::on_backSaveButton_clicked() {
     this->close();
 }
 
+
 editBook::~editBook() {
     delete ui;
 }
-
-
 
