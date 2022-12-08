@@ -158,6 +158,16 @@ void mainMenu::on_searchBookButton_clicked() {
 }
 
 void mainMenu::on_bookAnalysisButton_clicked() {
+    if (bookList->size == 0) {
+        QMessageBox::warning(
+                this,
+                "喜报",
+                "图书表不存在，请新建或者导入一个。",
+                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
+                QMessageBox::StandardButton::Ok
+        );
+        return;
+    }
     auto w_bookAnalysis = new bookAnalysisWindow(nullptr, bookList);
     w_bookAnalysis->show();
     this->close();
