@@ -28,7 +28,7 @@ public:
 // 私有成员函数
 private:
     void exportBookList(BookList *l);
-    BookList *importBookList(std::string fileName);
+    BookList *importBookList(const std::string& fileName);
 
 // 槽函数
 private slots:

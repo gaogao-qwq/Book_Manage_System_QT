@@ -42,7 +42,7 @@ void mainMenu::exportBookList(BookList *l) {
     os.close();
 }
 
-BookList *mainMenu::importBookList(std::string fileName) {
+BookList *mainMenu::importBookList(const std::string& fileName) {
     std::ifstream is(fileName, std::ios::in);
     if (!is.is_open()) {
         QMessageBox::warning(
