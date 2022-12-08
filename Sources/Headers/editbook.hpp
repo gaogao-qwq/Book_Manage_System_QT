@@ -2,11 +2,13 @@
 #define BOOK_MANAGE_SYSTEM_QT_EDITBOOK_HPP
 
 #include <QWidget>
+#include <unordered_set>
 #include "mainmenu.hpp"
 #include "bookList.hpp"
 #include "convert.hpp"
 #include "editlistsubwindow.hpp"
 #include "insertlistsubwindow.hpp"
+#include "deduplicatelistsubwindow.hpp"
 
 
 QT_BEGIN_NAMESPACE
@@ -37,7 +39,7 @@ private:
     BookNode *sortByAuthor(BookNode *h);
     BookNode *sortByPress(BookNode *h);
     // 删除
-    void deleteList(BookList *l, int row);
+    void deleteNode(BookList *l, int row);
 
 // 槽函数
 private slots:
@@ -46,11 +48,15 @@ private slots:
     void on_sortByBookButton_clicked();
     void on_sortByAuthorButton_clicked();
     void on_sortByPressButton_clicked();
-    void on_backButton_clicked();
-    void on_backSaveButton_clicked();
+
     void on_editButton_clicked();
     void on_deleteButton_clicked();
     void on_insertButton_clicked();
+
+    void on_deduplicateButton_clicked();
+
+    void on_backButton_clicked();
+    void on_backSaveButton_clicked();
 
 // 私有成员变量
 private:

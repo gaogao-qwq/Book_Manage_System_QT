@@ -6,69 +6,103 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>880</width>
-    <height>510</height>
+    <width>1002</width>
+    <height>602</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>browseBook</string>
+   <string>图书管理系统 - 浏览图书列表</string>
   </property>
-  <widget class="QTableWidget" name="bookTable">
+  <property name="windowIcon">
+   <iconset>
+    <selectedoff>D:/pictures/avator.png</selectedoff>
+   </iconset>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>10</x>
      <y>10</y>
-     <width>861</width>
-     <height>431</height>
+     <width>981</width>
+     <height>581</height>
     </rect>
    </property>
-   <attribute name="horizontalHeaderCascadingSectionResizes">
-    <bool>false</bool>
-   </attribute>
-   <attribute name="horizontalHeaderMinimumSectionSize">
-    <number>25</number>
-   </attribute>
-   <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>168</number>
-   </attribute>
-   <column>
-    <property name="text">
-     <string>书号</string>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>10</number>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>书名</string>
+    <property name="topMargin">
+     <number>10</number>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>作者名</string>
+    <property name="rightMargin">
+     <number>10</number>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>价格</string>
+    <property name="bottomMargin">
+     <number>10</number>
     </property>
-   </column>
-   <column>
-    <property name="text">
-     <string>出版社</string>
-    </property>
-   </column>
-  </widget>
-  <widget class="QPushButton" name="backButton">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>450</y>
-     <width>861</width>
-     <height>51</height>
-    </rect>
-   </property>
-   <property name="text">
-    <string>返回上一级</string>
-   </property>
+    <item>
+     <widget class="QTableWidget" name="bookTable">
+      <attribute name="horizontalHeaderCascadingSectionResizes">
+       <bool>true</bool>
+      </attribute>
+      <attribute name="horizontalHeaderMinimumSectionSize">
+       <number>25</number>
+      </attribute>
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>188</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>书号</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>书名</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>作者名</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>价格</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>出版社</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+    <item>
+     <widget class="QPushButton" name="backButton">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+        <horstretch>0</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>0</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>返回上一级</string>
+      </property>
+     </widget>
+    </item>
+   </layout>
   </widget>
  </widget>
  <resources/>

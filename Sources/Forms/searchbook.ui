@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>searchBook</class>
+ <widget class="QWidget" name="searchBook">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>772</width>
+    <height>471</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>图书管理系统 - 图书查找</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <selectedon>D:/pictures/avator.png</selectedon>
+   </iconset>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>50</y>
+     <width>751</width>
+     <height>371</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout">
+    <property name="leftMargin">
+     <number>10</number>
+    </property>
+    <property name="topMargin">
+     <number>10</number>
+    </property>
+    <property name="rightMargin">
+     <number>10</number>
+    </property>
+    <property name="bottomMargin">
+     <number>10</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="searchCountlabel">
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p align=&quot;center&quot;&gt;&lt;span style=&quot; font-size:14pt;&quot;&gt;共找到 0本符合搜索条件的书本&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <widget class="QTableWidget" name="bookTable">
+      <attribute name="horizontalHeaderDefaultSectionSize">
+       <number>142</number>
+      </attribute>
+      <column>
+       <property name="text">
+        <string>ISBN</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>书名</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>作者名</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>价格</string>
+       </property>
+      </column>
+      <column>
+       <property name="text">
+        <string>出版社</string>
+       </property>
+      </column>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QPushButton" name="searchButton">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>10</y>
+     <width>101</width>
+     <height>31</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>12</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>搜索</string>
+   </property>
+  </widget>
+  <widget class="QPlainTextEdit" name="searchTextEdit">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>10</y>
+     <width>641</width>
+     <height>31</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="backButton">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>420</y>
+     <width>751</width>
+     <height>41</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>14</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>返回上一级</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

@@ -37,6 +37,11 @@ void createBookList::on_inputButton_clicked() {
         p->author = ui->authorTextEdit->toPlainText().toStdString(),
         p->press = ui->pressTextEdit->toPlainText().toStdString(),
         ++newList->size;
+        ui->priceTextEdit->clear();
+        ui->ISBNTextEdit->clear();
+        ui->bookTextEdit->clear();
+        ui->authorTextEdit->clear();
+        ui->pressTextEdit->clear();
         return;
     }
     p->next = new BookNode(
@@ -48,6 +53,11 @@ void createBookList::on_inputButton_clicked() {
         nullptr, p
     );
     ++newList->size, p = p->next;
+    ui->priceTextEdit->clear();
+    ui->ISBNTextEdit->clear();
+    ui->bookTextEdit->clear();
+    ui->authorTextEdit->clear();
+    ui->pressTextEdit->clear();
 }
 
 createBookList::~createBookList() {

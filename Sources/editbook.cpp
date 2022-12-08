@@ -4,13 +4,12 @@
 editBook::editBook(QWidget *parent, BookList *list) :
         QWidget(parent), ui(new Ui::editBook), bookList(list), newList(nullptr) {
     ui->setupUi(this);
-
     // 只允许选中一行
     ui->bookTable->setSelectionBehavior(QAbstractItemView::SelectRows);
     ui->bookTable->setSelectionMode(QAbstractItemView::SingleSelection);
-    //不允许编辑
+    // 不允许编辑
     ui->bookTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
+    // 深拷贝
     newList = deepCopy(bookList);
     editBook::updateTableWidget(newList);
     if (Convert::getPinYinMap(m_pinyin) == -1) {
@@ -58,6 +57,13 @@ void editBook::updateTableWidget(BookList *l) {
         ui->bookTable->setItem(row, col++, new QTableWidgetItem(QString::number(p->price)));
         ui->bookTable->setItem(row, col, new QTableWidgetItem(QString::fromStdString(p->press)));
         p = p->next;
+    }
+    // 自动调整列宽并填充表格
+    for (int i = 0; i < 5; ++i) {
+        if (i == 1)
+            ui->bookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+        else
+            ui->bookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
     }
 }
 
@@ -262,7 +268,7 @@ BookNode *editBook::sortByPress(BookNode *h) {
     return res->next;
 }
 
-void editBook::deleteList(BookList *l, int row) {
+void editBook::deleteNode(BookList *l, int row) {
     auto p = l->head;
     if (row > l->size) {
         if (QMessageBox::Ok ==  QMessageBox::warning(
@@ -295,6 +301,7 @@ void editBook::deleteList(BookList *l, int row) {
     --newList->size;
     delete(p);
 }
+
 
 void editBook::on_sortByPriceButton_clicked() {
     newList->head = editBook::sortByPrice(newList->head);
@@ -341,14 +348,15 @@ void editBook::on_deleteButton_clicked() {
     auto items = ui->bookTable->selectedItems();
     if (items.empty()) {
         QMessageBox::warning(
-                this,
-                "喜报",
-                "请先在右侧列表中选择你要编辑的图书行",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok)
+            this,
+            "喜报",
+            "请先在右侧列表中选择你要编辑的图书行",
+            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
+            QMessageBox::StandardButton::Ok
         );
         return;
     }
-    editBook::deleteList(newList, (int)items.at(0)->row());
+    editBook::deleteNode(newList, (int) items.at(0)->row());
     editBook::updateTableWidget(newList);
 }
 
@@ -365,6 +373,33 @@ void editBook::on_insertButton_clicked() {
     }
     auto w_insertListSubWindow = new insertListSubWindow(nullptr, newList, items.at(0)->row());
     w_insertListSubWindow->show();
+    this->close();
+}
+
+void editBook::on_deduplicateButton_clicked() {
+    std::unordered_set<std::string> unorderedSet, duplicatedISBN;
+    auto p = newList->head;
+    for (int i = 0; i < newList->size; ++i) {
+        if (unorderedSet.find(p->ISBN) != unorderedSet.end()) {
+            duplicatedISBN.emplace(p->ISBN);
+            p = p->next;
+            continue;
+        }
+        unorderedSet.emplace(p->ISBN);
+        p = p->next;
+    }
+    if (duplicatedISBN.empty()) {
+        QMessageBox::warning(
+            this,
+            "喜报",
+            "没有找到 ISBN 相同的书本",
+            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
+            QMessageBox::StandardButton::Ok
+        );
+        return;
+    }
+    auto w_deduplicateListSubWindow = new deduplicateListSubWindow(nullptr, newList, duplicatedISBN);
+    w_deduplicateListSubWindow->show();
     this->close();
 }
 

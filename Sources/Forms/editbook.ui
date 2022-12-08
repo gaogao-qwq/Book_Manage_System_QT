@@ -6,28 +6,36 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>880</width>
+    <width>987</width>
     <height>510</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>editBook</string>
+   <string>图书管理系统 - 编辑图书列表</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <selectedon>D:/pictures/avator.png</selectedon>
+   </iconset>
   </property>
   <widget class="QTableWidget" name="bookTable">
    <property name="geometry">
     <rect>
      <x>275</x>
      <y>10</y>
-     <width>591</width>
+     <width>701</width>
      <height>491</height>
     </rect>
    </property>
    <attribute name="horizontalHeaderDefaultSectionSize">
-    <number>114</number>
+    <number>135</number>
+   </attribute>
+   <attribute name="verticalHeaderMinimumSectionSize">
+    <number>23</number>
    </attribute>
    <column>
     <property name="text">
-     <string>书号</string>
+     <string>ISBN</string>
     </property>
    </column>
    <column>
@@ -126,7 +134,7 @@
       </font>
      </property>
      <property name="text">
-      <string>按书号排序</string>
+      <string>按 ISBN 排序</string>
      </property>
     </widget>
     <widget class="QPushButton" name="sortByBookButton">
@@ -281,7 +289,7 @@
     <property name="title">
      <string>工具</string>
     </property>
-    <widget class="QPushButton" name="deduplicationButton">
+    <widget class="QPushButton" name="deduplicateButton">
      <property name="geometry">
       <rect>
        <x>10</x>

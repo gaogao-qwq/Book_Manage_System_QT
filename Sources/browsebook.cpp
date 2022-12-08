@@ -23,6 +23,13 @@ void browseBook::updateTableWidget(BookList *l) {
         ui->bookTable->setItem(row, col, new QTableWidgetItem(QString::fromStdString(p->press)));
         p = p->next;
     }
+    // 自动调整列宽并填充表格
+    for (int i = 0; i < 5; ++i) {
+        if (i == 1)
+            ui->bookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
+        else
+            ui->bookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
+    }
 }
 
 void browseBook::on_backButton_clicked() {

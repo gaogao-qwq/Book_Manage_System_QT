@@ -11,7 +11,12 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>editListSubWindow</string>
+   <string>图书管理系统 - 编辑数据</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <selectedon>D:/pictures/avator.png</selectedon>
+   </iconset>
   </property>
   <widget class="QPushButton" name="editSaveButton">
    <property name="geometry">

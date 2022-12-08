@@ -6,67 +6,42 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>322</width>
-    <height>344</height>
+    <width>509</width>
+    <height>430</height>
    </rect>
   </property>
   <property name="windowTitle">
-   <string>mainMenu</string>
+   <string>图书管理系统 - 主菜单</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <selectedoff>D:/pictures/avator.png</selectedoff>
+   </iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <widget class="QWidget" name="verticalLayoutWidget">
+   <widget class="QWidget" name="gridLayoutWidget">
     <property name="geometry">
      <rect>
-      <x>60</x>
-      <y>20</y>
-      <width>201</width>
-      <height>261</height>
+      <x>90</x>
+      <y>130</y>
+      <width>331</width>
+      <height>201</height>
      </rect>
     </property>
-    <layout class="QVBoxLayout" name="verticalLayout" stretch="0,0,0,0">
-     <property name="spacing">
-      <number>0</number>
-     </property>
-     <property name="sizeConstraint">
-      <enum>QLayout::SetDefaultConstraint</enum>
-     </property>
-     <property name="leftMargin">
-      <number>20</number>
-     </property>
-     <property name="topMargin">
-      <number>0</number>
-     </property>
-     <property name="rightMargin">
-      <number>20</number>
-     </property>
-     <property name="bottomMargin">
-      <number>0</number>
-     </property>
-     <item>
-      <widget class="QPushButton" name="createBookListButton">
+    <layout class="QGridLayout" name="gridLayout">
+     <item row="5" column="0">
+      <widget class="QPushButton" name="bookAnalysisButton">
        <property name="font">
         <font>
          <pointsize>16</pointsize>
         </font>
        </property>
        <property name="text">
-        <string>新建图书列表</string>
+        <string>图书信息统计</string>
        </property>
       </widget>
      </item>
-     <item>
-      <widget class="QPushButton" name="browseBookButton">
-       <property name="font">
-        <font>
-         <pointsize>16</pointsize>
-        </font>
-       </property>
-       <property name="text">
-        <string>浏览图书列表</string>
-       </property>
-      </widget>
-     </item>
-     <item>
+     <item row="0" column="1">
       <widget class="QPushButton" name="editBookButton">
        <property name="font">
         <font>
@@ -78,7 +53,31 @@
        </property>
       </widget>
      </item>
-     <item>
+     <item row="0" column="0">
+      <widget class="QPushButton" name="createBookListButton">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>新建图书列表</string>
+       </property>
+      </widget>
+     </item>
+     <item row="1" column="0">
+      <widget class="QPushButton" name="browseBookButton">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>浏览图书列表</string>
+       </property>
+      </widget>
+     </item>
+     <item row="5" column="1">
       <widget class="QPushButton" name="exitSystemButton">
        <property name="font">
         <font>
@@ -93,7 +92,62 @@
        </property>
       </widget>
      </item>
+     <item row="1" column="1">
+      <widget class="QPushButton" name="searchBookButton">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>图书查找</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="1">
+      <widget class="QPushButton" name="exportBookListButton">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>图书表导出</string>
+       </property>
+      </widget>
+     </item>
+     <item row="2" column="0">
+      <widget class="QPushButton" name="importBookListButton">
+       <property name="font">
+        <font>
+         <pointsize>16</pointsize>
+        </font>
+       </property>
+       <property name="text">
+        <string>图书表导入</string>
+       </property>
+      </widget>
+     </item>
     </layout>
+   </widget>
+   <widget class="QLabel" name="label">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>60</y>
+      <width>371</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>黑体</family>
+      <pointsize>20</pointsize>
+     </font>
+    </property>
+    <property name="text">
+     <string>图书管理系统 by gaogao_qwq</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
@@ -101,22 +155,40 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>322</width>
+     <width>509</width>
      <height>22</height>
     </rect>
    </property>
-   <widget class="QMenu" name="menu">
+   <widget class="QMenu" name="aboutMenu">
     <property name="title">
      <string>关于</string>
     </property>
-    <addaction name="actionAbout"/>
+    <addaction name="aboutAction"/>
    </widget>
-   <addaction name="menu"/>
+   <widget class="QMenu" name="fileMenu">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <addaction name="exportBookListAction"/>
+    <addaction name="importBookListAction"/>
+   </widget>
+   <addaction name="fileMenu"/>
+   <addaction name="aboutMenu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
-  <action name="actionAbout">
+  <action name="aboutAction">
    <property name="text">
     <string>许可证</string>
+   </property>
+  </action>
+  <action name="exportBookListAction">
+   <property name="text">
+    <string>导出图书表</string>
+   </property>
+  </action>
+  <action name="importBookListAction">
+   <property name="text">
+    <string>导入图书表</string>
    </property>
   </action>
  </widget>

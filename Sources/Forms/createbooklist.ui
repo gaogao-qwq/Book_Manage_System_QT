@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>createBookList</string>
+   <string>图书管理系统 - 新建图书列表</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>D:/pictures/avator.png</normaloff>D:/pictures/avator.png</iconset>
   </property>
   <widget class="QGroupBox" name="groupBox">
    <property name="geometry">
