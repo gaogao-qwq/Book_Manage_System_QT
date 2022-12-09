@@ -20,6 +20,7 @@ void insertListSubWindow::insertAtFront(BookList *l) {
             ui->priceTextEdit->toPlainText().toStdString(),
             p, nullptr
         );
+        l->head = l->head->prev;
         ++l->size;
         return;
     }
