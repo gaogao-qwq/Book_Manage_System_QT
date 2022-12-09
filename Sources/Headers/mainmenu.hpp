@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <fstream>
+#include <exception>
 #include <QFileDialog>
 #include <QMainWindow>
 #include "browsebook.hpp"

@@ -22,6 +22,7 @@ void mainMenu::exportBookList(BookList *l) {
         return;
     }
 
+    os << "***" << std::endl;
     os << l->size << std::endl;
     auto p = bookList->head;
     for (int i = 0; i < l->size; ++i) {
@@ -58,13 +59,16 @@ BookList *mainMenu::importBookList(const std::string& fileName) {
 
     std::string listSize;
     try {
+        std::string verification;
+        std::getline(is, verification);
+        if (verification != "***") throw std::invalid_argument("导入的文本文档格式错误！");
         std::getline(is, listSize);
     }
     catch (...) {
         QMessageBox::warning(
             this,
             "喜报",
-            "导入的文件格式错误！",
+            "导入的文本文档格式错误！",
             QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
             QMessageBox::StandardButton::Ok
         );
