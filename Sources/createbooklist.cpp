@@ -19,7 +19,7 @@ void createBookList::on_backSaveButton_clicked() {
         // 由于 QT6.2 已经弃用了旧的 StandardButton，所以这里要用 StandardButtons 形参的 warning() 重载函数
         if (QMessageBox::StandardButton::No == QMessageBox::warning(
                 this,
-                "注意",
+                "喜报",
                 "目前图书表中存在数据，继续此操作会覆盖原图书表，是否继续？",
                 QMessageBox::StandardButtons(QMessageBox::StandardButton::Yes | QMessageBox::StandardButton::No)
         )) return;
@@ -30,29 +30,16 @@ void createBookList::on_backSaveButton_clicked() {
 }
 
 void createBookList::on_inputButton_clicked() {
-    if (newList->size == 0) {
-        p->price = ui->priceTextEdit->toPlainText().toFloat(),
-        p->ISBN = ui->ISBNTextEdit->toPlainText().toStdString(),
-        p->book = ui->bookTextEdit->toPlainText().toStdString(),
-        p->author = ui->authorTextEdit->toPlainText().toStdString(),
-        p->press = ui->pressTextEdit->toPlainText().toStdString(),
-        ++newList->size;
-        ui->priceTextEdit->clear();
-        ui->ISBNTextEdit->clear();
-        ui->bookTextEdit->clear();
-        ui->authorTextEdit->clear();
-        ui->pressTextEdit->clear();
-        return;
+    if (newList->size != 0) {
+        p->next = new BookNode(0, "", "", "", "", nullptr, p);
+        p = p->next;
     }
-    p->next = new BookNode(
-        ui->priceTextEdit->toPlainText().toFloat(),
-        ui->ISBNTextEdit->toPlainText().toStdString(),
-        ui->bookTextEdit->toPlainText().toStdString(),
-        ui->authorTextEdit->toPlainText().toStdString(),
-        ui->pressTextEdit->toPlainText().toStdString(),
-        nullptr, p
-    );
-    ++newList->size, p = p->next;
+    p->price = ui->priceTextEdit->toPlainText().toFloat(),
+    p->ISBN = ui->ISBNTextEdit->toPlainText().toStdString(),
+    p->book = ui->bookTextEdit->toPlainText().toStdString(),
+    p->author = ui->authorTextEdit->toPlainText().toStdString(),
+    p->press = ui->pressTextEdit->toPlainText().toStdString(),
+    ++newList->size;
     ui->priceTextEdit->clear();
     ui->ISBNTextEdit->clear();
     ui->bookTextEdit->clear();
