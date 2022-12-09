@@ -4,6 +4,7 @@
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
+    // 方便 Debug 用
     auto b1 = new BookNode(56.4, "9787519817749", "Effective Modern C++（中文版）", "Scott Meyers", "中国电力出版社");
     auto b2 = new BookNode(86.2, "9787111213826", "Java 编程思想", "Bruce Eckel", "机械工业出版社");
     auto b3 = new BookNode(67.8, "7121085119", "程序员的自我修养 : 链接、装载与库", "俞甲子 石凡 潘爱民", "电子工业出版社");
@@ -13,10 +14,12 @@ int main(int argc, char *argv[]) {
     auto b7 = new BookNode(74.3, "9787115279460", "C++ Primer Plus（第6版）中文版", "Stephen Prata", "人民邮电出版社");
     auto b8 = new BookNode(74.3, "9787115279460", "C++ Primer Plus（第6版）中文版", "Stephen Prata", "人民邮电出版社");
     auto b9 = new BookNode(259.6, "9787115585028", "On Java 中文版 基础卷+进阶卷（共2册）", "Bruce Eckel", "人民邮电出版社");
+    auto b10 = new BookNode(76.0, "9787560437606", "德国观念论与当前哲学的困境", "Martin Heidegger", "西北大学出版社");
     b1->next = b2, b2->prev = b1, b2->next = b3, b3->prev = b2, b3->next = b4, b4->prev = b3,
     b4->next = b5, b5->prev = b4, b5->next = b6, b6->prev = b5, b6->next = b7, b7->prev = b6,
-    b7->next = b8, b8->prev = b7, b8->next = b9, b9->prev = b8;
-    auto w_mainMenu = new mainMenu(nullptr, new BookList(b1, 9));
+    b7->next = b8, b8->prev = b7, b8->next = b9, b9->prev = b8, b9->next = b10, b10->prev = b9;
+
+    auto w_mainMenu = new mainMenu(nullptr, new BookList(nullptr, 0));
     w_mainMenu->show();
     return QApplication::exec();
 }
