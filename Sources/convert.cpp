@@ -61,7 +61,7 @@ bool Convert::isZh(const char* p) {
 }
 
 int Convert::getPinYinMap(std::map<std::string, std::string> &pin_yin_map) {
-    std::string path = R"(../lib/pinyin.txt)";
+    std::string path = R"(./lib/pinyin.txt)";
     if (path.empty()) return -1;
 
     // 读取拼音字库文件
