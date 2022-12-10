@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1002</width>
-    <height>602</height>
+    <width>1000</width>
+    <height>566</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -18,92 +18,86 @@
     <selectedoff>D:/pictures/avator.png</selectedoff>
    </iconset>
   </property>
-  <widget class="QWidget" name="verticalLayoutWidget">
-   <property name="geometry">
-    <rect>
-     <x>10</x>
-     <y>10</y>
-     <width>981</width>
-     <height>581</height>
-    </rect>
-   </property>
-   <layout class="QVBoxLayout" name="verticalLayout">
-    <property name="leftMargin">
-     <number>10</number>
-    </property>
-    <property name="topMargin">
-     <number>10</number>
-    </property>
-    <property name="rightMargin">
-     <number>10</number>
-    </property>
-    <property name="bottomMargin">
-     <number>10</number>
-    </property>
-    <item>
-     <widget class="QTableWidget" name="bookTable">
-      <attribute name="horizontalHeaderCascadingSectionResizes">
-       <bool>true</bool>
-      </attribute>
-      <attribute name="horizontalHeaderMinimumSectionSize">
-       <number>25</number>
-      </attribute>
-      <attribute name="horizontalHeaderDefaultSectionSize">
-       <number>188</number>
-      </attribute>
-      <column>
-       <property name="text">
-        <string>书号</string>
+  <layout class="QGridLayout" name="gridLayout">
+   <item row="0" column="0">
+    <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>10</number>
+     </property>
+     <property name="topMargin">
+      <number>10</number>
+     </property>
+     <property name="rightMargin">
+      <number>10</number>
+     </property>
+     <property name="bottomMargin">
+      <number>10</number>
+     </property>
+     <item>
+      <widget class="QTableWidget" name="bookTable">
+       <attribute name="horizontalHeaderCascadingSectionResizes">
+        <bool>true</bool>
+       </attribute>
+       <attribute name="horizontalHeaderMinimumSectionSize">
+        <number>25</number>
+       </attribute>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>188</number>
+       </attribute>
+       <column>
+        <property name="text">
+         <string>书号</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>书名</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>作者名</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>价格</string>
+        </property>
+       </column>
+       <column>
+        <property name="text">
+         <string>出版社</string>
+        </property>
+       </column>
+      </widget>
+     </item>
+     <item>
+      <widget class="QPushButton" name="backButton">
+       <property name="sizePolicy">
+        <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+         <horstretch>0</horstretch>
+         <verstretch>0</verstretch>
+        </sizepolicy>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>书名</string>
+       <property name="minimumSize">
+        <size>
+         <width>0</width>
+         <height>50</height>
+        </size>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>作者名</string>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
        </property>
-      </column>
-      <column>
        <property name="text">
-        <string>价格</string>
+        <string>返回上一级</string>
        </property>
-      </column>
-      <column>
-       <property name="text">
-        <string>出版社</string>
-       </property>
-      </column>
-     </widget>
-    </item>
-    <item>
-     <widget class="QPushButton" name="backButton">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-        <horstretch>0</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>0</width>
-        <height>50</height>
-       </size>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="text">
-       <string>返回上一级</string>
-      </property>
-     </widget>
-    </item>
-   </layout>
-  </widget>
+      </widget>
+     </item>
+    </layout>
+   </item>
+  </layout>
  </widget>
  <resources/>
  <connections/>
