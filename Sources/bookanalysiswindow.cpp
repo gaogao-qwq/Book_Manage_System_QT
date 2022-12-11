@@ -38,13 +38,7 @@ void bookAnalysisWindow::on_pressComboBox_currentTextChanged(const QString &text
         ui->pressBookTable->setItem(row, col, new QTableWidgetItem(QString::number(i->price)));
         ++row;
     }
-    // 自动调整列宽并填充表格
-    for (int i = 0; i < 4; ++i) {
-        if (i == 1)
-            ui->pressBookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-        else
-            ui->pressBookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
-    }
+    ui->pressBookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void bookAnalysisWindow::on_authorComboBox_currentTextChanged(const QString &text) {
@@ -60,13 +54,7 @@ void bookAnalysisWindow::on_authorComboBox_currentTextChanged(const QString &tex
         ui->authorBookTable->setItem(row, col, new QTableWidgetItem(QString::fromStdString(i->author)));
         ++row;
     }
-    // 自动调整列宽并填充表格
-    for (int i = 0; i < 4; ++i) {
-        if (i == 1)
-            ui->authorBookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-        else
-            ui->authorBookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
-    }
+    ui->authorBookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void bookAnalysisWindow::on_exitButton_clicked() {

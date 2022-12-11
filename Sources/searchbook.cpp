@@ -7,6 +7,7 @@ searchBook::searchBook(QWidget *parent, BookList *list) :
     ui->setupUi(this);
     // 不允许编辑
     ui->bookTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    ui->bookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void searchBook::updateTableWidget(std::vector<BookNode *> searchResult) {
@@ -20,13 +21,7 @@ void searchBook::updateTableWidget(std::vector<BookNode *> searchResult) {
         ui->bookTable->setItem(row, col++, new QTableWidgetItem(QString::number(searchResult[row]->price)));
         ui->bookTable->setItem(row, col, new QTableWidgetItem(QString::fromStdString(searchResult[row]->press)));
     }
-    // 自动调整列宽并填充表格
-    for (int i = 0; i < 5; ++i) {
-        if (i == 1)
-            ui->bookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::ResizeToContents);
-        else
-            ui->bookTable->horizontalHeader()->setSectionResizeMode(i, QHeaderView::Stretch);
-    }
+    ui->bookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void searchBook::on_searchButton_clicked() {
