@@ -7,20 +7,32 @@
     <x>0</x>
     <y>0</y>
     <width>325</width>
-    <height>357</height>
+    <height>365</height>
    </rect>
   </property>
   <property name="windowTitle">
    <string>图书管理系统 - 插入数据</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <selectedon>D:/pictures/avator.png</selectedon>
-   </iconset>
+   <iconset resource="../../resource.qrc">
+    <normaloff>:/lib/lib/icon.png</normaloff>
+    <selectedon>D:/pictures/avator.png</selectedon>:/lib/lib/icon.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
     <layout class="QVBoxLayout" name="verticalLayout">
+     <property name="leftMargin">
+      <number>5</number>
+     </property>
+     <property name="topMargin">
+      <number>5</number>
+     </property>
+     <property name="rightMargin">
+      <number>5</number>
+     </property>
+     <property name="bottomMargin">
+      <number>5</number>
+     </property>
      <item>
       <widget class="QLabel" name="ISBNLabel">
        <property name="font">
@@ -244,6 +256,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

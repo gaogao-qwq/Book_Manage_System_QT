@@ -14,8 +14,8 @@
    <string>图书管理系统 - 新建图书列表</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <normaloff>D:/pictures/avator.png</normaloff>D:/pictures/avator.png</iconset>
+   <iconset resource="../../resource.qrc">
+    <normaloff>:/lib/lib/icon.png</normaloff>:/lib/lib/icon.png</iconset>
   </property>
   <layout class="QGridLayout" name="gridLayout">
    <item row="0" column="0">
@@ -256,6 +256,8 @@
    </item>
   </layout>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>

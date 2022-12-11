@@ -14,9 +14,8 @@
    <string>图书管理系统 - 主菜单</string>
   </property>
   <property name="windowIcon">
-   <iconset>
-    <selectedoff>D:/pictures/avator.png</selectedoff>
-   </iconset>
+   <iconset resource="../../resource.qrc">
+    <normaloff>:/lib/lib/icon.png</normaloff>:/lib/lib/icon.png</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -221,6 +220,8 @@
    </property>
   </action>
  </widget>
- <resources/>
+ <resources>
+  <include location="../../resource.qrc"/>
+ </resources>
  <connections/>
 </ui>
