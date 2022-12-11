@@ -5,6 +5,10 @@
 createBookList::createBookList(QWidget *parent, BookList *list) :
         QWidget(parent), ui(new Ui::createBookList), bookList(list) {
     ui->setupUi(this);
+    // 不允许编辑
+    ui->bookTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    // 铺满表格
+    ui->bookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void createBookList::on_backButton_clicked() {
@@ -40,6 +44,15 @@ void createBookList::on_inputButton_clicked() {
     p->author = ui->authorTextEdit->toPlainText().toStdString(),
     p->press = ui->pressTextEdit->toPlainText().toStdString(),
     ++newList->size;
+    // 添加至左侧预览框
+    ui->bookTable->setRowCount(newList->size);
+    int col = 0;
+    ui->bookTable->setItem(newList->size - 1, col++, new QTableWidgetItem(ui->ISBNTextEdit->toPlainText()));
+    ui->bookTable->setItem(newList->size - 1, col++, new QTableWidgetItem(ui->bookTextEdit->toPlainText()));
+    ui->bookTable->setItem(newList->size - 1, col++, new QTableWidgetItem(ui->authorTextEdit->toPlainText()));
+    ui->bookTable->setItem(newList->size - 1, col++, new QTableWidgetItem(ui->priceTextEdit->toPlainText()));
+    ui->bookTable->setItem(newList->size - 1, col, new QTableWidgetItem(ui->pressTextEdit->toPlainText()));
+    // 清除 textEdit
     ui->priceTextEdit->clear();
     ui->ISBNTextEdit->clear();
     ui->bookTextEdit->clear();

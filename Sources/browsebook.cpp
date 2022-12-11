@@ -7,6 +7,8 @@ browseBook::browseBook(QWidget *parent, BookList *list) :
     ui->setupUi(this);
     // 不允许编辑
     ui->bookTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    // 铺满表格
+    ui->bookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     browseBook::updateTableWidget(bookList);
 }
 
@@ -23,7 +25,6 @@ void browseBook::updateTableWidget(BookList *l) {
         ui->bookTable->setItem(row, col, new QTableWidgetItem(QString::fromStdString(p->press)));
         p = p->next;
     }
-    ui->bookTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
 }
 
 void browseBook::on_backButton_clicked() {
