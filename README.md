@@ -12,10 +12,13 @@ Book_Manage_System_QT
 │  LICENSE
 │  NOTICE.txt
 │  README.md
+│  resource.qrc
 │
 ├─lib
+│      icon.png
 │      LICENSE.txt
 │      pinyin.txt
+│      xibao.png
 │
 └─Sources
     │  aboutwindow.cpp
@@ -27,6 +30,7 @@ Book_Manage_System_QT
     │  deduplicatelistsubwindow.cpp
     │  editbook.cpp
     │  editlistsubwindow.cpp
+    │  goodnews.cpp
     │  insertlistsubwindow.cpp
     │  main.cpp
     │  mainmenu.cpp
@@ -40,6 +44,7 @@ Book_Manage_System_QT
     │      deduplicatelistsubwindow.ui
     │      editbook.ui
     │      editlistsubwindow.ui
+    │      goodnews.ui
     │      insertlistsubwindow.ui
     │      mainmenu.ui
     │      searchbook.ui
@@ -54,6 +59,7 @@ Book_Manage_System_QT
             deduplicatelistsubwindow.hpp
             editbook.hpp
             editlistsubwindow.hpp
+            goodnews.hpp
             insertlistsubwindow.hpp
             mainmenu.hpp
             searchbook.hpp
