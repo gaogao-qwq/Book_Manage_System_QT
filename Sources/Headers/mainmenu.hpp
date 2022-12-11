@@ -13,6 +13,7 @@
 #include "aboutwindow.hpp"
 #include "searchbook.hpp"
 #include "bookanalysiswindow.hpp"
+#include "goodnews.hpp"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class mainMenu; }

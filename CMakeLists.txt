@@ -34,6 +34,7 @@ add_executable(Book_Manage_System_QT
         Sources/deduplicatelistsubwindow.cpp Sources/Headers/deduplicatelistsubwindow.hpp Sources/Forms/deduplicatelistsubwindow.ui
         Sources/searchbook.cpp Sources/Headers/searchbook.hpp Sources/Forms/searchbook.ui
         Sources/bookanalysiswindow.cpp Sources/Headers/bookanalysiswindow.hpp Sources/Forms/bookanalysiswindow.ui
+        Sources/goodnews.cpp Sources/Headers/goodnews.hpp Sources/Forms/goodnews.ui
 )
 
 target_link_libraries(Book_Manage_System_QT

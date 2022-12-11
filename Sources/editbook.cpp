@@ -13,13 +13,8 @@ editBook::editBook(QWidget *parent, BookList *list) :
     newList = deepCopy(bookList);
     editBook::updateTableWidget(newList);
     if (Convert::getPinYinMap(m_pinyin) == -1) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "找不到或不存在拼音字库文件 pinyin.txt",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "找不到或不存在拼音字库文件 pinyin.txt");
+        w_goodNews->show();
     }
 }
 
@@ -265,13 +260,9 @@ BookNode *editBook::sortByPress(BookNode *h) {
 void editBook::deleteNode(BookList *l, int row) {
     auto p = l->head;
     if (row > l->size) {
-        if (QMessageBox::Ok ==  QMessageBox::warning(
-                this,
-                "喜报",
-                "所选择要编辑的图书行数超出了链表长度，请重新输入！",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        )) return;
+        auto w_goodNews = new goodNews(this, "所选择要编辑的图书行数超出了链表长度，请重新输入！");
+        w_goodNews->show();
+        return;
     }
     for (int i = 0; i < row; ++i) p = p->next;
     // 对于删除头结点
@@ -325,12 +316,8 @@ void editBook::on_sortByPressButton_clicked() {
 void editBook::on_editButton_clicked() {
     auto items = ui->bookTable->selectedItems();
     if (items.empty()) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "请先在右侧列表中选择你要编辑的图书行",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok)
-        );
+        auto w_goodNews = new goodNews(this, "请先在右侧列表中选择你要编辑的图书行");
+        w_goodNews->show();
         return;
     }
     auto w_editListSubWindow = new editListSubWindow(nullptr, newList, (int)items.at(0)->row());
@@ -341,13 +328,8 @@ void editBook::on_editButton_clicked() {
 void editBook::on_deleteButton_clicked() {
     auto items = ui->bookTable->selectedItems();
     if (items.empty()) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "请先在右侧列表中选择你要编辑的图书行",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "请先在右侧列表中选择你要编辑的图书行");
+        w_goodNews->show();
         return;
     }
     editBook::deleteNode(newList, (int) items.at(0)->row());
@@ -357,12 +339,8 @@ void editBook::on_deleteButton_clicked() {
 void editBook::on_insertButton_clicked() {
     auto items = ui->bookTable->selectedItems();
     if (items.empty()) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "请先在右侧列表中选择你要插入的图书行",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok)
-        );
+        auto w_goodNews = new goodNews(this, "请先在右侧列表中选择你要编辑的图书行");
+        w_goodNews->show();
         return;
     }
     auto w_insertListSubWindow = new insertListSubWindow(nullptr, newList, items.at(0)->row());
@@ -383,13 +361,8 @@ void editBook::on_deduplicateButton_clicked() {
         p = p->next;
     }
     if (duplicatedISBN.empty()) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "没有找到 ISBN 相同的书本",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "没有找到 ISBN 相同的书本");
+        w_goodNews->show();
         return;
     }
     auto w_deduplicateListSubWindow = new deduplicateListSubWindow(nullptr, newList, duplicatedISBN);

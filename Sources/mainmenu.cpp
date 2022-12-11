@@ -11,13 +11,8 @@ void mainMenu::exportBookList(BookList *l) {
     QString fileName = QFileDialog::getSaveFileName(this, tr("导出图书表至文件"), "", tr("文本文档(*.txt)"));
     std::ofstream os(fileName.toStdString(), std::ios::out);
     if (!os.is_open()) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "文件路径无效或无法导出文件。",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "文件路径无效或无法导出文件。");
+        w_goodNews->show();
         os.close();
         return;
     }
@@ -33,26 +28,16 @@ void mainMenu::exportBookList(BookList *l) {
         os << p->press  << std::endl;
         p = p->next;
     }
-    QMessageBox::warning(
-        this,
-        "喜报",
-        "导出成功",
-        QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-        QMessageBox::StandardButton::Ok
-    );
+    auto w_goodNews = new goodNews(this, "导出成功。");
+    w_goodNews->show();
     os.close();
 }
 
 BookList *mainMenu::importBookList(const std::string& fileName) {
     std::ifstream is(fileName, std::ios::in);
     if (!is.is_open()) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "文件路径无效或无法读文件。",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "文件路径无效或无法读文件。");
+        w_goodNews->show();
         is.close();
         return bookList;
     }
@@ -65,13 +50,8 @@ BookList *mainMenu::importBookList(const std::string& fileName) {
         std::getline(is, listSize);
     }
     catch (...) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "导入的文本文档格式错误！",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "导入的文本文档格式错误。");
+        w_goodNews->show();
         is.close();
         return bookList;
     }
@@ -96,13 +76,8 @@ BookList *mainMenu::importBookList(const std::string& fileName) {
         left = right + 1;
         p->press = currLn.substr(left, currLn.length() - left);
     }
-    QMessageBox::warning(
-        this,
-        "喜报",
-        "导入图书表成功！",
-        QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-        QMessageBox::StandardButton::Ok
-    );
+    auto w_goodNews = new goodNews(this, "导入图书表成功。");
+    w_goodNews->show();
     is.close();
     return newList;
 }
@@ -115,13 +90,8 @@ void mainMenu::on_createBookListButton_clicked() {
 
 void mainMenu::on_browseBookButton_clicked() {
     if (bookList->size == 0) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "图书表不存在，请新建或者导入一个。",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "图书表不存在，请新建或者导入一个。");
+        w_goodNews->show();
         return;
     }
     auto w_browsBook = new browseBook(nullptr, bookList);
@@ -131,13 +101,8 @@ void mainMenu::on_browseBookButton_clicked() {
 
 void mainMenu::on_editBookButton_clicked() {
     if (bookList->size == 0) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "图书表不存在，请新建或者导入一个。",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "图书表不存在，请新建或者导入一个。");
+        w_goodNews->show();
         return;
     }
     auto w_editBook = new editBook(nullptr, bookList);
@@ -147,13 +112,8 @@ void mainMenu::on_editBookButton_clicked() {
 
 void mainMenu::on_searchBookButton_clicked() {
     if (bookList->size == 0) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "图书表不存在，请新建或者导入一个。",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "图书表不存在，请新建或者导入一个。");
+        w_goodNews->show();
         return;
     }
     auto w_searchBook = new searchBook(nullptr, bookList);
@@ -163,13 +123,8 @@ void mainMenu::on_searchBookButton_clicked() {
 
 void mainMenu::on_bookAnalysisButton_clicked() {
     if (bookList->size == 0) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "图书表不存在，请新建或者导入一个。",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "图书表不存在，请新建或者导入一个。");
+        w_goodNews->show();
         return;
     }
     auto w_bookAnalysis = new bookAnalysisWindow(nullptr, bookList);
@@ -184,13 +139,8 @@ void mainMenu::on_importBookListButton_clicked() {
 
 void mainMenu::on_exportBookListButton_clicked() {
     if (bookList->size == 0) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "图书表不存在，请新建或者导入一个。",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "图书表不存在，请新建或者导入一个。");
+        w_goodNews->show();
         return;
     }
     exportBookList(bookList);
@@ -207,13 +157,8 @@ void mainMenu::on_importBookListAction_triggered() {
 
 void mainMenu::on_exportBookListAction_triggered() {
     if (bookList->size == 0) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "图书表不存在，请新建或者导入一个。",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "图书表不存在，请新建或者导入一个。");
+        w_goodNews->show();
         return;
     }
     exportBookList(bookList);
@@ -221,9 +166,6 @@ void mainMenu::on_exportBookListAction_triggered() {
 
 void mainMenu::on_aboutAction_triggered() {
     auto w_aboutWindow = new aboutWindow(this);
-    // 设置子窗口开启后阻塞主窗口
-    w_aboutWindow->setWindowFlags(Qt::Dialog);
-    w_aboutWindow->setWindowModality(Qt::ApplicationModal);
     w_aboutWindow->show();
 }
 

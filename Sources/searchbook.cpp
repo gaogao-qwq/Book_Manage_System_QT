@@ -27,13 +27,8 @@ void searchBook::updateTableWidget(std::vector<BookNode *> searchResult) {
 void searchBook::on_searchButton_clicked() {
     std::string str = ui->searchTextEdit->toPlainText().toStdString();
     if (str.empty()) {
-        QMessageBox::warning(
-            this,
-            "喜报",
-            "请先在搜索框中输入要搜索的内容",
-            QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-            QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "请先在搜索框中输入要搜索的内容");
+        w_goodNews->show();
         return;
     }
     std::vector<BookNode *> searchResult;
