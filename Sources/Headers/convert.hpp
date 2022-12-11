@@ -3,7 +3,8 @@
 
 #include <map>
 #include <string>
-#include <fstream>
+#include <QFile>
+#include <QTextStream>
 
 class Convert {
 public:

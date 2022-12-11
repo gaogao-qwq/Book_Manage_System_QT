@@ -20,6 +20,7 @@ include_directories(
 )
 
 add_executable(Book_Manage_System_QT
+        resource.qrc
         Sources/main.cpp
         Sources/bookList.cpp
         Sources/convert.cpp

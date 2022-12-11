@@ -61,18 +61,20 @@ bool Convert::isZh(const char* p) {
 }
 
 int Convert::getPinYinMap(std::map<std::string, std::string> &pin_yin_map) {
-    std::string path = R"(./lib/pinyin.txt)";
-    if (path.empty()) return -1;
+    QFile file(":/lib/lib/pinyin.txt");
+    if (!file.open(QIODevice::ReadOnly))
+        return -1;
 
     // 读取拼音字库文件
-    std::ifstream is(path, std::ios::in);
-    if (!is.is_open()) return -1;
+    QTextStream in(&file);
 
-    while (!is.eof()) {
+    while (!in.atEnd()) {
         std::string tmp_pinyin;
+        QString tmp;
 
         // 每次读取一行，拼音文件格式：王=wang1,wang2，数字表示声调
-        getline(is, tmp_pinyin);
+        in >> tmp;
+        tmp_pinyin = tmp.toStdString();
         if (tmp_pinyin.find('=') != std::string::npos) {
             std::string zh, pinyin;
             size_t i = tmp_pinyin.find_first_of('=');
@@ -94,7 +96,6 @@ int Convert::getPinYinMap(std::map<std::string, std::string> &pin_yin_map) {
             }
         }
     }
-    // 关闭文件
-    is.close();
+    file.close();
     return 0;
 }

@@ -1,0 +1,8 @@
+<RCC>
+  <qresource prefix="/lib">
+    <file>lib/LICENSE.txt</file>
+    <file>lib/icon.png</file>
+    <file>lib/xibao.png</file>
+    <file>lib/pinyin.txt</file>
+  </qresource>
+</RCC>
