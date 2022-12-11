@@ -39,7 +39,6 @@ void searchBook::on_searchButton_clicked() {
         p = p->next;
     }
     ui->searchCountlabel->setText(QString::fromStdString("共找到 " + std::to_string(searchResult.size()) + "本符合搜索条件的书本"));
-    ui->searchCountlabel->setAlignment(Qt::AlignVCenter);
     updateTableWidget(searchResult);
 }
 

@@ -72,7 +72,10 @@
         </font>
        </property>
        <property name="text">
-        <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;共找到 0本符合搜索条件的书本&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+        <string>共找到 0本符合搜索条件的书本</string>
+       </property>
+       <property name="textFormat">
+        <enum>Qt::AutoText</enum>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
