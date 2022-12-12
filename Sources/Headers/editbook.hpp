@@ -63,7 +63,7 @@ private:
     Ui::editBook *ui;
     BookList *bookList;
     BookList *newList;
-    std::map<std::string, std::string> m_pinyin;
+    std::unordered_map<std::string, std::string> m_pinyin;
 };
 
 

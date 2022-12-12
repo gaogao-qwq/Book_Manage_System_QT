@@ -1,6 +1,6 @@
 #include "convert.hpp"
 
-std::string Convert::convertZhToPinyin(std::string &zh, std::map<std::string, std::string> pinyin_map) {
+std::string Convert::convertZhToPinyin(std::string &zh, std::unordered_map<std::string, std::string> pinyin_map) {
     std::string convert_str;
     // 逐个字符检查
     for (size_t i = 0; i < zh.length(); ++i) {
@@ -60,7 +60,7 @@ bool Convert::isZh(const char* p) {
     return false;
 }
 
-int Convert::getPinYinMap(std::map<std::string, std::string> &pin_yin_map) {
+int Convert::getPinYinMap(std::unordered_map<std::string, std::string> &pin_yin_map) {
     QFile file(":/lib/lib/pinyin.txt");
     if (!file.open(QIODevice::ReadOnly))
         return -1;
