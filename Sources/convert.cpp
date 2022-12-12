@@ -91,7 +91,7 @@ int Convert::getPinYinMap(std::unordered_map<std::string, std::string> &pin_yin_
                 }
                 else
                     pinyin.assign(pinyin.begin(), pinyin.end() - 1);
-                // 取出来后放到 map 里
+                // 取出来后放到 unordered_map 里
                 pin_yin_map[zh] = pinyin;
             }
         }
