@@ -85,13 +85,8 @@ void deduplicateListSubWindow::updateTableWidget() {
 void deduplicateListSubWindow::on_deleteButton_clicked() {
     auto items = ui->bookTable->selectedItems();
     if (items.empty()) {
-        QMessageBox::warning(
-                this,
-                "喜报",
-                "请先在右侧列表中选择你要编辑的图书行",
-                QMessageBox::StandardButtons(QMessageBox::StandardButton::Ok),
-                QMessageBox::StandardButton::Ok
-        );
+        auto w_goodNews = new goodNews(this, "请先在右侧列表中选择你要删除的图书行");
+        w_goodNews->show();
         return;
     }
     deleteNode(items.at(0)->row());
