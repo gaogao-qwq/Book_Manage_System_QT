@@ -1,47 +1,49 @@
 cmake_minimum_required(VERSION 3.23)
 project(Book_Manage_System_QT)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_AUTOMOC ON)
 set(CMAKE_AUTORCC ON)
 set(CMAKE_AUTOUIC ON)
 
-set(CMAKE_PREFIX_PATH "D:/QT/6.4.1/mingw_64")
+set(CMAKE_AUTOUIC_SEARCH_PATHS Sources/Forms/ui)
+
+include_directories(
+        ${PROJECT_SOURCE_DIR}/Headers
+)
+
+# Windows 用户可以手动指定一下工具链路径为 QT 自带工具链
+# set(CMAKE_PREFIX_PATH "D:/QT/6.4.1/mingw_64")
 
 find_package(Qt6 COMPONENTS
         Core
         Gui
         Widgets
         REQUIRED
-)
+        )
 
-include_directories(
-        ${PROJECT_SOURCE_DIR}/Sources/Headers
-)
 
 add_executable(Book_Manage_System_QT
         resource.qrc
         Sources/main.cpp
-        Sources/bookList.cpp
-        Sources/convert.cpp
-        Sources/mainmenu.cpp Sources/Headers/mainmenu.hpp Sources/Forms/mainmenu.ui
-        Sources/browsebook.cpp Sources/Headers/browsebook.hpp Sources/Forms/browsebook.ui
-        Sources/editbook.cpp Sources/Headers/editbook.hpp Sources/Forms/editbook.ui
-        Sources/createbooklist.cpp Sources/Headers/createbooklist.hpp Sources/Forms/createbooklist.ui
-        Sources/editlistsubwindow.cpp Sources/Headers/editlistsubwindow.hpp Sources/Forms/editlistsubwindow.ui
-        Sources/insertlistsubwindow.cpp Sources/Headers/insertlistsubwindow.hpp Sources/Forms/insertlistsubwindow.ui
-        Sources/aboutwindow.cpp Sources/Headers/aboutwindow.hpp Sources/Forms/aboutwindow.ui
-        Sources/deduplicatelistsubwindow.cpp Sources/Headers/deduplicatelistsubwindow.hpp Sources/Forms/deduplicatelistsubwindow.ui
-        Sources/searchbook.cpp Sources/Headers/searchbook.hpp Sources/Forms/searchbook.ui
-        Sources/bookanalysiswindow.cpp Sources/Headers/bookanalysiswindow.hpp Sources/Forms/bookanalysiswindow.ui
-        Sources/goodnews.cpp Sources/Headers/goodnews.hpp Sources/Forms/goodnews.ui
-)
+        Sources/Forms/mainMenuWindow.cpp Headers/forms/main_menu_window.hpp
+        Sources/Forms/browseBookWindow.cpp Headers/forms/browseBookWindow.hpp
+        Sources/Forms/editBookWindow.cpp Headers/forms/editBookWindow.hpp
+        Sources/Forms/createBookListWindow.cpp Headers/forms/createBookListWindow.hpp
+        Sources/Forms/editListSubWindow.cpp Headers/forms/editListSubWindow.hpp
+        Sources/Forms/insertListSubWindow.cpp Headers/forms/insertListSubWindow.hpp
+        Sources/Forms/aboutWindow.cpp Headers/forms/about_window.hpp
+        Sources/Forms/deduplicateListSubWindow.cpp Headers/forms/deduplicateListSubWindow.hpp
+        Sources/Forms/searchBookWindow.cpp Headers/forms/searchBookWindow.hpp
+        Sources/Forms/bookAnalysisWindow.cpp Headers/forms/book_analysis_window.hpp
+        Sources/Forms/goodNewsWindow.cpp Headers/forms/goodNewsWindow.hpp
+        )
 
 target_link_libraries(Book_Manage_System_QT
         Qt::Core
         Qt::Gui
         Qt::Widgets
-)
+        )
 
 if (WIN32)
     set(DEBUG_SUFFIX)

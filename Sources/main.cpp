@@ -1,6 +1,6 @@
 #include <QApplication>
-#include "mainmenu.hpp"
-#include "bookList.hpp"
+#include "forms/main_menu_window.hpp"
+#include "data_structures/bookList.hpp"
 
 int main(int argc, char *argv[]) {
     QApplication a(argc, argv);
@@ -19,7 +19,7 @@ int main(int argc, char *argv[]) {
     b4->next = b5, b5->prev = b4, b5->next = b6, b6->prev = b5, b6->next = b7, b7->prev = b6,
     b7->next = b8, b8->prev = b7, b8->next = b9, b9->prev = b8, b9->next = b10, b10->prev = b9;
 
-    auto w_mainMenu = new mainMenu(nullptr, new BookList(nullptr, 0));
+    auto w_mainMenu = new main_menu_window(nullptr, new BookList(nullptr, 0));
     w_mainMenu->show();
     return QApplication::exec();
 }
